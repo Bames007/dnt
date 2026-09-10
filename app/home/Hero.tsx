@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Black_Ops_One, Open_Sans } from "next/font/google";
-import { Menu, X, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 
 const blackOpsOne = Black_Ops_One({
@@ -64,7 +64,6 @@ const slides = [
 ];
 
 export default function Hero() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [imageError, setImageError] = useState(false);
 
@@ -131,7 +130,7 @@ export default function Hero() {
         </svg>
       </div>
 
-      {/* Hero Background Image with Responsive Layout & Mobile Scrim */}
+      {/* Hero Background Image */}
       <div className="absolute inset-0 lg:left-auto lg:right-0 lg:top-0 z-[2] h-full w-full lg:w-[68%] overflow-hidden">
         <AnimatePresence mode="wait">
           {!imageError ? (
@@ -152,7 +151,6 @@ export default function Hero() {
                 className="object-cover object-center filter brightness-95"
                 onError={() => setImageError(true)}
               />
-              {/* Responsive Overlays for text readability across devices */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#d4cfc3] via-[#d4cfc3]/60 to-black/30 lg:hidden" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#d4cfc3] via-black/10 to-transparent hidden lg:block" />
             </motion.div>
@@ -163,64 +161,6 @@ export default function Hero() {
           )}
         </AnimatePresence>
       </div>
-
-      {/* Header Navigation */}
-      <header className="relative z-40 flex items-center justify-between px-6 md:px-12 py-6 w-full max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#363734] text-white shadow-sm font-bold text-xs">
-            🇳🇬
-          </div>
-        </div>
-        <nav className="hidden items-center gap-8 md:flex font-bold tracking-[0.2em] text-xs">
-          {["HOME", "DIASPORA", "PROJECTS", "CONTACT"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="transition-opacity hover:opacity-50"
-            >
-              {item}
-            </a>
-          ))}
-        </nav>
-        <button
-          onClick={() => setMobileMenuOpen(true)}
-          className="flex h-11 w-11 items-center justify-center rounded-md bg-[#e4e0d4] border border-[#cfcbc0] text-[#363734] transition-colors hover:bg-[#d8d3c5] md:hidden shadow-sm"
-          aria-label="Open menu"
-        >
-          <Menu size={20} />
-        </button>
-      </header>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#d4cfc3]/98 backdrop-blur-md"
-          >
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="absolute right-6 top-6 flex h-11 w-11 items-center justify-center rounded-md bg-[#e4e0d4] border border-[#cfcbc0]"
-              aria-label="Close menu"
-            >
-              <X size={20} />
-            </button>
-            <nav className="flex flex-col items-center gap-6 font-bold tracking-[0.25em] text-sm">
-              {["HOME", "DIASPORA", "PROJECTS", "CONTACT"].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item}
-                </a>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Left Pagination Sidebar */}
       <aside className="absolute left-8 top-1/2 -translate-y-1/2 z-35 hidden md:flex flex-col items-center pointer-events-auto">
@@ -246,8 +186,8 @@ export default function Hero() {
         </div>
       </aside>
 
-      {/* Main Hero Content Area with Swipe Support */}
-      <div className="relative z-30 flex-1 flex items-center px-6 md:px-20 max-w-4xl mx-auto w-full my-auto">
+      {/* Main Hero Content */}
+      <div className="relative z-30 flex-1 flex items-center px-6 md:px-20 max-w-4xl mx-auto w-full my-auto pt-24 md:pt-0">
         <motion.div
           className="w-full cursor-grab active:cursor-grabbing"
           drag="x"
@@ -276,7 +216,6 @@ export default function Hero() {
                   {current.description}
                 </p>
 
-                {/* Action Button */}
                 <div className="mt-5">
                   <a
                     href="#diaspora-portal"
@@ -292,7 +231,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Bottom Controls Bar (Desktop & Tablets) */}
+      {/* Bottom Controls Bar (Desktop) */}
       <div className="relative z-30 hidden md:flex items-center justify-between px-12 py-8 w-full max-w-7xl mx-auto">
         <div className="flex gap-2">
           <button
@@ -319,7 +258,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Mobile Footer Controls Bar */}
+      {/* Mobile Footer Controls */}
       <div className="relative z-30 flex items-center justify-between px-6 py-4 bg-[#e4e0d4] border-t border-[#d0cbc0] md:hidden">
         <div className="flex items-center gap-3">
           <span className="text-lg font-bold">{current.number}</span>

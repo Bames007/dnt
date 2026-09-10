@@ -593,16 +593,6 @@ export default function ForumBento() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14 border-b border-gray-200 pb-6 sm:pb-8">
           <div>
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-[10px] sm:text-[11px] font-bold tracking-[0.25em] uppercase mb-4 shadow-sm"
-            >
-              <MessageSquare size={12} />
-              Open Forum
-            </motion.span>
             <h2
               className={`${blackOpsOne.className} text-3xl sm:text-5xl lg:text-6xl uppercase leading-[1.05] tracking-wide text-gray-900`}
             >
